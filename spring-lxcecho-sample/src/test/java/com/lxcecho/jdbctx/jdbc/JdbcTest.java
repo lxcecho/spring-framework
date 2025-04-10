@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2024/3/26
  */
 public class JdbcTest {

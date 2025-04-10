@@ -9,7 +9,7 @@ import org.springframework.validation.Validator;
 import java.util.List;
 
 /**
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/11
  */
 @Service

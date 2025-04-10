@@ -4,7 +4,7 @@ import com.lxcecho.ioc.iocanno.dao.UserDao;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/10
  */
 @Repository

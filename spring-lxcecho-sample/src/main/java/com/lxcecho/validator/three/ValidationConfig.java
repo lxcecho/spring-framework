@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 /**
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/11
  */
 @Configuration

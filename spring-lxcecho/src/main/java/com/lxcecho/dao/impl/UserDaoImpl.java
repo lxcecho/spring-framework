@@ -4,7 +4,7 @@ import com.lxcecho.anno.Bean;
 import com.lxcecho.dao.UserDao;
 
 /**
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/11
  */
 @Bean

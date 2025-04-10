@@ -3,7 +3,7 @@ package com.lxcecho.ioc.iocxml.bean;
 import org.springframework.beans.factory.FactoryBean;
 
 /**
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/10
  */
 public class MyFactoryBean implements FactoryBean<User> {

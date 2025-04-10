@@ -19,7 +19,7 @@ import java.util.Arrays;
  * 6. @AfterReturning 返回通知
  * 7. @AfterThrowing 异常通知
  *
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/10
  */
 @Aspect // 切面类

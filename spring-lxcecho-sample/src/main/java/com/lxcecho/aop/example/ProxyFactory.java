@@ -6,7 +6,7 @@ import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
 /**
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/10
  */
 public class ProxyFactory {

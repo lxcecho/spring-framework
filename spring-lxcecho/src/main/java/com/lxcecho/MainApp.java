@@ -5,7 +5,7 @@ import com.lxcecho.bean.ApplicationContext;
 import com.lxcecho.service.UserService;
 
 /**
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/11
  */
 public class MainApp {

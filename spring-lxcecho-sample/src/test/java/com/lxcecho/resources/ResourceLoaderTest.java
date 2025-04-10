@@ -11,7 +11,7 @@ import org.springframework.core.io.ResourceLoader;
 /**
  * ResourceLoader：该接口实现类的实例可以获得一个 Resource 实例
  *
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/11
  */
 public class ResourceLoaderTest {

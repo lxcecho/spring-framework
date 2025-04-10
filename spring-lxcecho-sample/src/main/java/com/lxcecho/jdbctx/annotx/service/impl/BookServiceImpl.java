@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * 【注意】：@Transactional 注解也可以加在接口上，但只有在设置了基于接口的代理时才会生效，因为注解不能继承。所以该注解最好是加在类的实现上。
  *
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/11
  */
 //@Transactional(propagation = Propagation.REQUIRED) // 标识的类上，则会影响类中所有的 public 方法

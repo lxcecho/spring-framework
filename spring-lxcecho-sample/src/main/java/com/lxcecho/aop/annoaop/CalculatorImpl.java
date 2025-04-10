@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * 基本实现类
  *
- * @author lxcecho azaki0426@gmail.com
+ * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/10
  */
 @Component
