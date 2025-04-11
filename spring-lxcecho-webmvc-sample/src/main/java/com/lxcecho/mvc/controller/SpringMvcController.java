@@ -1,4 +1,4 @@
-package com.lxcecho.mvc;
+package com.lxcecho.mvc.controller;
 
 import com.lxcecho.mvc.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,13 +14,12 @@ import java.util.Map;
 
 /**
  * @author lxcecho lxcecho@gmail.com
- * @since 2025-04-10
+ * @since 2025-04-11
  */
 @SessionAttributes(value = {"user"}, types = {String.class}) // value 存放的是 String[] 数组，types 是 class[] 数组
 @Controller
 @RequestMapping("springmvc")
-public class SpringMVCTest {
-
+public class SpringMvcController {
 	private static final String SUCCESS = "success";
 
 	/**
@@ -217,6 +216,4 @@ public class SpringMVCTest {
 		System.out.println("test Method...");
 		return SUCCESS;
 	}
-
 }
-
