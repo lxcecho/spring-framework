@@ -1,5 +1,6 @@
-package com.lxcecho.mvc.xml;
+package com.lxcecho.mvc.anno;
 
+import com.lxcecho.mvc.config.WebConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,10 +20,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author lxcecho lxcecho@gmail.com
  * @since 2025-04-10
  */
-@ContextConfiguration(locations = {"classpath:springmvc.xml"})
+@ContextConfiguration(classes = {WebConfig.class})
 @WebAppConfiguration
 @ExtendWith(SpringExtension.class) // 使用 SpringExtension
-public class SpringMVCTest {
+public class SpringMVCAnnoTest {
 
 	private MockMvc mockMvc;
 
