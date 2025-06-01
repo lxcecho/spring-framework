@@ -1,6 +1,6 @@
-package com.lxcecho.mvc.controller;
+package com.lxcecho.mvc.xml.controller;
 
-import com.lxcecho.mvc.entity.User;
+import com.lxcecho.mvc.xml.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -18,9 +18,22 @@ import java.util.Map;
  */
 @SessionAttributes(value = {"user"}, types = {String.class}) // value 存放的是 String[] 数组，types 是 class[] 数组
 @Controller
-@RequestMapping("springmvc")
-public class SpringMvcController {
+public class HelloController {
 	private static final String SUCCESS = "success";
+
+	/**
+	 * 映射请求的名称：用于客户端请求；类似 Struts2 中 action 映射配置的 action 名称
+	 * 1. 使用 @RequestMapping 注解来映射请求的 URL
+	 * 2. 返回值会通过视图解析器解析为实际的物理视图, 对于 InternalResourceViewResolver 视图解析器,
+	 * 会做如下的解析:
+	 * 通过 prefix + returnVal + suffix 这样的方式得到实际的物理视图, 然后做转发操作.
+	 * /WEB-INF/views/success.jsp
+	 */
+	@RequestMapping(value = "sayHello", method = RequestMethod.GET)
+	public String sayHello() {
+		System.out.println("sayHello");
+		return "success"; // 结果如何跳转呢？需要配置映射解析器
+	}
 
 	/**
 	 * @SessionAttributes 除了可以通过属性名指定需要放到会话中的属性外（实际上使用的是 value 属性值），
@@ -42,6 +55,7 @@ public class SpringMvcController {
 	@RequestMapping("testMap")
 	public String testMap(Map<String, Object> map) {
 		System.out.println(map.getClass().getName());
+		// org.springframework.validation.support.BindingAwareModelMap
 		map.put("names", Arrays.asList("Tom", "Marry", "Mike"));
 		return SUCCESS;
 	}
@@ -84,7 +98,7 @@ public class SpringMvcController {
 	 * Spring MVC:会按请求参数名和 POJO 属性名进行自动匹配，自动为该对象填充属性值。
 	 * 支持级联属性。如：dept.deptId、dept.address.tel等。
 	 */
-	//POJO------------------500
+	// POJO------------------500
 	@RequestMapping("testPojo")
 	// 使用实体对象 POJO 接收请求参数值（form 表单中提交的数据）
 	public String testPojo(User user) {
@@ -112,11 +126,15 @@ public class SpringMvcController {
 	}
 
 	/*
-	 * @RequestParam: 映射请求参数；
+	 * @RequestParam: 映射请求参数；http://localhost:8080/testRequestParam?username=xx&age=18
 	 * value 值即请求参数的参数名；
 	 * required 该参数是否必须，默认为 true(若为 true，则参数必须存在，否则出现异常；若不想它出现异常，
 	 * 则使该属性的 required=false)；
 	 * defaultValue: 请求参数的默认值。(如果前端页面没有携带参数，则可以设置该参数的默认值)
+	 * 使用场景：
+	 *  指定绑定的请求参数名
+	 *  要求请求参数必须传递
+	 *  为请求参数提供默认值 基本用法：
 	 */
 	@RequestMapping("testRequestParam")
 	public String testRequestParam(@RequestParam(value = "username") String username,
@@ -127,6 +145,9 @@ public class SpringMvcController {
 
 	/**
 	 * Rest 风格的 URL：
+	 * http://kb.cnblogs.com/page/186516/
+	 * http://www.infoq.com/cn/articles/rest-introduction
+	 *
 	 * 以 CRUD 为例：
 	 * 新增：/order POST
 	 * 修改：/order/1 PUT update?id=1
@@ -141,7 +162,7 @@ public class SpringMvcController {
 	 * 在 SpringMVC 的目标方法中如何获取 id 呢？
 	 * 使用 @PathVariable 注解。
 	 */
-	//PUT---------------405
+	// PUT---------------405
 	@RequestMapping(value = "testRestPut/{id}", method = RequestMethod.PUT)
 	@ResponseBody
 	public String testRestPut(@PathVariable Integer id) {
@@ -171,7 +192,9 @@ public class SpringMvcController {
 		return SUCCESS;
 	}
 
-	/*
+	/**
+	 * testPathVariable/1
+	 *
 	 * @PathVariable 可以来映射 URL 中的占位符到目标参数中。
 	 */
 	@RequestMapping("testPathVariable/{id}")
@@ -180,14 +203,22 @@ public class SpringMvcController {
 		return SUCCESS;
 	}
 
-	// 使用通配符
+	/**
+	 * 使用通配符：
+	 * ?：匹配文件名中的一个字符
+	 * *：匹配文件名中的任意字符
+	 * **：** 匹配多层路径
+	 *
+	 * @return view name
+	 */
 	@RequestMapping("testAntPath/*/abc")
 	public String testAntPath() {
 		System.out.println("testAntPath...");
 		return SUCCESS;
 	}
 
-	/*
+	/**
+	 * /testParams?username=zhangsan&age=15
 	 * 了解：可以使用 params 和 headers 来更加精确的映射请求，params 和 headers 支持简单的表达式。
 	 */
 	@RequestMapping(value = "testParams", params = {"username", "age!=10"},
@@ -203,14 +234,17 @@ public class SpringMvcController {
 	 *   ---方法处：提供进一步的细分映射信息，相对于类定义处的 URL。
 	 *   	若类定义处未标注 @RequestMapping，则方法处标记的 URL 相对于 WEB 的应用根目录。
 	 */
-
 	@RequestMapping("testRequestMapping")
 	public String testRequestMapping() {
 		System.out.println("testRequestMapping");
 		return SUCCESS;
 	}
 
-	// 常用：使用 method 属性来指定请求方式。默认是 GET 方式提交
+	/**
+	 * 常用：使用 method 属性来指定请求方式。默认是 GET 方式提交
+	 *
+	 * @return view name
+	 */
 	@RequestMapping(value = "testMethod", method = RequestMethod.GET)
 	public String testMethod() {
 		System.out.println("test Method...");

@@ -8,24 +8,25 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="sayHello">Hello Servlet</a>
+<a href="sayHello">sayHello</a>
+<a href="/hello-servlet">helloServlet</a>
 
 <br>
 <br>
 
-<a href="springmvc/testSessionAttributes"> Test SessionAttributes</a>
+<a href="testSessionAttributes"> Test SessionAttributes</a>
 <br>
 <br>
-<a href="springmvc/testMap"> Test Map</a>
+<a href="testMap"> Test Map</a>
 <br>
 <br>
-<a href="springmvc/testModelAndView"> Test ModelAndView</a>
+<a href="testModelAndView"> Test ModelAndView</a>
 <br>
 <br>
-<a href="springmvc/testServletAPI">testServletAPI</a>
+<a href="testServletAPI">testServletAPI</a>
 <br>
 <br>
-<form action="springmvc/testPojo">
+<form action="testPojo">
     username:<label>
     <input type="text" name="username">
 </label><br>
@@ -49,54 +50,54 @@
 </form>
 <br>
 <br>
-<a href="springmvc/testCookieValue">testCookieValue</a>
+<a href="testCookieValue">testCookieValue</a>
 <br>
 <br>
-<a href="springmvc/testRequestParam?username=zhangsan">testRequestParam</a>
+<a href="testRequestParam?username=zhangsan">testRequestParam</a>
 <br>
 <br>
-<a href="springmvc/testRequestHeader">testRequestHeader</a>
+<a href="testRequestHeader">testRequestHeader</a>
 <br>
 <br>
 <!-- DELETE 测试 -->
-<form action="springmvc/testRestDelete/1" method="post">
+<form action="testRestDelete/1" method="post">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="TestRest DELETE">
 </form>
 <br>
 <br>
 <!-- PUT 测试 -->
-<form action="springmvc/testRestPut/1" method="post">
+<form action="testRestPut/1" method="post">
     <input type="hidden" name="_method" value="PUT">
     <input type="submit" value="TestRest PUT">
 </form>
 <br>
 <br>
 <!-- POST 测试 -->
-<form action="springmvc/testRestPost/9527" method="post">
+<form action="testRestPost/9527" method="post">
     <input type="submit" value="TestRest POST">
 </form>
 <br>
 <br>
 <!-- GET 测试 -->
-<a href="springmvc/testRest/1">Test Rest Get</a>
+<a href="testRest/1">Test Rest Get</a>
 <br>
 <br>
-<a href="springmvc/testPathVariable/666">testPathVariable...</a>
+<a href="testPathVariable/666">testPathVariable...</a>
 <br>
-<a href="springmvc/testAntPath/test/abc">testAntPath</a>
+<a href="testAntPath/test/abc">testAntPath</a>
 <br>
-<a href="springmvc/testParams?username=zhangsan&age=12">testParams</a>
+<a href="testParams?username=zhangsan&age=15">testParams</a>
 <br>
 <!-- 表单形式：POST 可以访问，GET 不能访问 -->
-<form action="springmvc/testMethod" method="post">
+<form action="testMethod" method="post">
     <input type="submit" value="testMethod">
 </form>
 <br>
 <!-- GET 方式提交可以正常访问，POST 不能访问 -->
-<a href="springmvc/testMethod">testMethod</a>
+<a href="testMethod">testMethod</a>
 <br>
-<a href="springmvc/testRquestMapping">testRequestMapping...</a>
+<a href="testRquestMapping">testRequestMapping...</a>
 <br>
 <a href="helloworld">Hello World.</a>
 </body>

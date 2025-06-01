@@ -1,4 +1,4 @@
-package com.lxcecho.mvc.entity;
+package com.lxcecho.mvc.xml.entity;
 
 /**
  * @author lxcecho lxcecho@gmail.com

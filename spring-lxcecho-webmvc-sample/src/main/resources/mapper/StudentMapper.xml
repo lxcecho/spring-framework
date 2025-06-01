@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+	<select id="findAll" resultType="com.lxcecho.mvc.anno.entity.Student">
+		SELECT *
+		FROM student
+	</select>
+
+	<select id="findStudentById" resultType="com.lxcecho.mvc.anno.entity.Student">
+		SELECT *
+		FROM student
+		WHERE id = #{id}
+	</select>
+
+	<insert id="insertStudent" parameterType="com.lxcecho.mvc.anno.entity.Student">
+		INSERT INTO student (name, email)
+		VALUES (#{name}, #{email})
+	</insert>
+
+	<update id="updateStudent" parameterType="com.lxcecho.mvc.anno.entity.Student">
+        UPDATE student
+        SET name  = #{name},
+            email = #{email}
+        WHERE id = #{id}
+    </update>
+
+	<delete id="deleteStudentById" parameterType="long">
+		DELETE FROM student WHERE id = #{id}
+	</delete>
+</mapper>

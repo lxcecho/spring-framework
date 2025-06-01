@@ -36,7 +36,7 @@ import org.springframework.lang.Nullable;
  * This interface is designed to avoid restricting the range of possible implementations.
  *
  * <p>Views should be beans. They are likely to be instantiated as beans by a ViewResolver.
- * As this interface is stateless, view implementations should be thread-safe.
+ * As this interface is stateless, view implementations should be thread-safe.【视图是无状态的，不会有安全问题】
  *
  * @author Rod Johnson
  * @author Arjen Poutsma

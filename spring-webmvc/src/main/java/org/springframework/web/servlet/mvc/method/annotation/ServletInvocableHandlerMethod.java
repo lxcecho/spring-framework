@@ -115,9 +115,11 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 	public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,
 			Object... providedArgs) throws Exception {
 
+		// 1、通过反射调用目标方法，内部会组装目标方法需要的参数
 		Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
 		setResponseStatus(webRequest);
 
+		// 如果返回值为空，表示目标方法中已经完成了请求的所有处理，表示请求处理结束了，将执行 mavContainer.setRequestHandled(true) 标记请求处理完毕
 		if (returnValue == null) {
 			if (isRequestNotModified(webRequest) || getResponseStatus() != null || mavContainer.isRequestHandled()) {
 				disableContentCachingIfNecessary(webRequest);
@@ -125,14 +127,16 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 				return;
 			}
 		}
-		else if (StringUtils.hasText(getResponseStatusReason())) {
+		else if (StringUtils.hasText(getResponseStatusReason())) { // 若 getResponseStatusReason() 不为空，表示请求已经处理过了
 			mavContainer.setRequestHandled(true);
 			return;
 		}
 
+		// 走到这里，说明有返回值，标记请求未处理完毕
 		mavContainer.setRequestHandled(false);
 		Assert.state(this.returnValueHandlers != null, "No return value handlers");
 		try {
+			// 对返回值进行处理
 			this.returnValueHandlers.handleReturnValue(
 					returnValue, getReturnValueType(returnValue), mavContainer, webRequest);
 		}

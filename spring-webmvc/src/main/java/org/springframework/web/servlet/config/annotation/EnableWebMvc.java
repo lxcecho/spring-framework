@@ -87,6 +87,8 @@ import org.springframework.context.annotation.Import;
  * }
  * </pre>
  *
+ * @EnableWebMvc注解效果等同于在 XML 配置中，可以使用 <mvc:annotation-driven> 元素！我们来解析<mvc:annotation-driven> 对应的解析工作！
+ *
  * @author Dave Syer
  * @author Rossen Stoyanchev
  * @since 3.1

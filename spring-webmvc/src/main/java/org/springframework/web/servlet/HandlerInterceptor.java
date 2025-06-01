@@ -102,7 +102,10 @@ public interface HandlerInterceptor {
 	 */
 	default boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
+		/**
+		 * 在业务处理器处理请求之前被调用，在该方法中对用户请求 request 进行处理。如果程序员决定该拦截器对请求进行拦截处理后还要调用其他的拦截器，
+		 * 或者是业务处理器去进行处理，则返回 true；如果程序员决定不需要再调用其他的组件去处理请求，则返回 false；
+		 */
 		return true;
 	}
 
@@ -129,6 +132,9 @@ public interface HandlerInterceptor {
 	 */
 	default void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			@Nullable ModelAndView modelAndView) throws Exception {
+		/**
+		 * 在业务处理器处理完请求后，但是 DispatcherServlet 向客户端返回响应前被调用，在该方法中对用户请求 request 进行处理；
+		 */
 	}
 
 	/**
@@ -154,6 +160,9 @@ public interface HandlerInterceptor {
 	 */
 	default void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
 			@Nullable Exception ex) throws Exception {
+		/**
+		 * 在 DispatcherServlet 完全处理完请求后被调用，可以在该方法中进行一些资源清理的操作；
+		 */
 	}
 
 }

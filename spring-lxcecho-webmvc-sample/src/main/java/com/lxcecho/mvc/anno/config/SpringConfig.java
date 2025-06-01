@@ -1,10 +1,9 @@
-package com.lxcecho.mvc.config;
+package com.lxcecho.mvc.anno.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Controller;
-
 
 /**
  * Spring 不扫描 controller 组件、AOP 咋实现的....?????
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Controller;
  * @author lxcecho lxcecho@gmail.com
  * @since 2024/1/1
  */
-@ComponentScan(value = "com.lxcecho.mvc", excludeFilters = {
+@ComponentScan(value = "com.lxcecho.mvc.anno", excludeFilters = {
 		@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)
 })
 @Configuration

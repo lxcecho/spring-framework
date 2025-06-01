@@ -116,6 +116,13 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 		return parameter.hasParameterAnnotation(RequestBody.class);
 	}
 
+
+	/**
+	 * 判断类上或者目标方法上是否有 @ResponseBody 注解
+	 *
+ 	 * @param returnType the method return type to check
+	 * @return
+	 */
 	@Override
 	public boolean supportsReturnType(MethodParameter returnType) {
 		return (AnnotatedElementUtils.hasAnnotation(returnType.getContainingClass(), ResponseBody.class) ||
@@ -173,11 +180,26 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 		return (requestBody != null && requestBody.required() && !parameter.isOptional());
 	}
 
+
+	/**
+	 * 处理返回值
+	 *
+ 	 * @param returnValue the value returned from the handler method
+	 * @param returnType the type of the return value. This type must have
+	 * previously been passed to {@link #supportsReturnType} which must
+	 * have returned {@code true}.
+	 * @param mavContainer the ModelAndViewContainer for the current request
+	 * @param webRequest the current request
+	 * @throws IOException
+	 * @throws HttpMediaTypeNotAcceptableException
+	 * @throws HttpMessageNotWritableException
+	 */
 	@Override
 	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
 			ModelAndViewContainer mavContainer, NativeWebRequest webRequest)
 			throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
 
+		// 1、标注为请求已处理，因为当前 handleReturnValue 方法会直接将结果输出到客户端，所以后续就不需要再进行视图渲染了，表示请求已经被处理了
 		mavContainer.setRequestHandled(true);
 		ServletServerHttpRequest inputMessage = createInputMessage(webRequest);
 		ServletServerHttpResponse outputMessage = createOutputMessage(webRequest);
@@ -190,6 +212,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 			}
 		}
 
+		// 2、将结果输出到客户端
 		// Try even with null return value. ResponseBodyAdvice could get involved.
 		writeWithMessageConverters(returnValue, returnType, inputMessage, outputMessage);
 	}

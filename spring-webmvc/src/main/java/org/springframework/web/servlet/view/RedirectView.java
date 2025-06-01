@@ -623,7 +623,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 				response.setHeader("Location", encodedURL);
 			}
 			else {
-				// Send status code 302 by default.
+				// Send status code 302 by default. 页面重定向
 				response.sendRedirect(encodedURL);
 			}
 		}

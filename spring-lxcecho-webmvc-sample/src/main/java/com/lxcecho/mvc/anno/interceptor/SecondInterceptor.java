@@ -1,0 +1,35 @@
+package com.lxcecho.mvc.anno.interceptor;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+/**
+ * @author lxcecho lxcecho@gmail.com
+ * @since 2025-06-01
+ */
+@Component
+public class SecondInterceptor implements HandlerInterceptor {
+	@Override
+	public void afterCompletion(HttpServletRequest arg0,
+	                            HttpServletResponse arg1, Object arg2, Exception arg3)
+			throws Exception {
+		System.out.println(this.getClass().getName() + " - afterCompletion");
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+	                       Object arg2, ModelAndView arg3) throws Exception {
+		System.out.println(this.getClass().getName() + " - postHandle");
+	}
+
+	@Override
+	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+	                         Object arg2) throws Exception {
+		System.out.println(this.getClass().getName() + " - preHandle");
+		return true;
+	}
+
+}

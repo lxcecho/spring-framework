@@ -68,6 +68,7 @@ public class HandlerMethod {
 	/** Logger that is available to subclasses. */
 	protected static final Log logger = LogFactory.getLog(HandlerMethod.class);
 
+	/* 通常就是我们自定义的 controller 对象 */
 	private final Object bean;
 
 	@Nullable
@@ -78,6 +79,7 @@ public class HandlerMethod {
 
 	private final Class<?> beanType;
 
+	/* 能够处理当前请求的方法 */
 	private final Method method;
 
 	private final Method bridgedMethod;

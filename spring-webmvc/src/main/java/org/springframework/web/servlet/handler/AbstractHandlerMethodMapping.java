@@ -376,10 +376,13 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	@Override
 	@Nullable
 	protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Exception {
+		// 获取 request 中的 url，用来匹配 handler
 		String lookupPath = initLookupPath(request);
 		this.mappingRegistry.acquireReadLock();
 		try {
+			// 根据路径寻找 Handler，并封装成 HandlerMethod
 			HandlerMethod handlerMethod = lookupHandlerMethod(lookupPath, request);
+			// 根据 handlerMethod 中的 bean 来实例化 Handler，并添加进 HandlerMethod
 			return (handlerMethod != null ? handlerMethod.createWithResolvedBean() : null);
 		}
 		finally {
@@ -399,16 +402,20 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	@Nullable
 	protected HandlerMethod lookupHandlerMethod(String lookupPath, HttpServletRequest request) throws Exception {
 		List<Match> matches = new ArrayList<>();
+		// 通过 lookupPath 属性中查找。如果找到了，就返回对应的 RequestMappingInfo
 		List<T> directPathMatches = this.mappingRegistry.getMappingsByDirectPath(lookupPath);
 		if (directPathMatches != null) {
+			// 如果匹配到了，检查其他属性是否符合要求，如请求方法，参数，header 等
 			addMatchingMappings(directPathMatches, matches, request);
 		}
 		if (matches.isEmpty()) {
+			// 没有直接匹配到，则遍历所有的处理方法进行通配符匹配
 			addMatchingMappings(this.mappingRegistry.getRegistrations().keySet(), matches, request);
 		}
 		if (!matches.isEmpty()) {
 			Match bestMatch = matches.get(0);
 			if (matches.size() > 1) {
+				// 如果方法有多个匹配，不同的通配符等，则排序选择出最合适的一个
 				Comparator<Match> comparator = new MatchComparator(getMappingComparator(request));
 				matches.sort(comparator);
 				bestMatch = matches.get(0);
@@ -424,6 +431,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				}
 				else {
 					Match secondBestMatch = matches.get(1);
+					// 不能有相同的最优 Match
 					if (comparator.compare(bestMatch, secondBestMatch) == 0) {
 						Method m1 = bestMatch.getHandlerMethod().getMethod();
 						Method m2 = secondBestMatch.getHandlerMethod().getMethod();
@@ -434,10 +442,13 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				}
 			}
 			request.setAttribute(BEST_MATCHING_HANDLER_ATTRIBUTE, bestMatch.getHandlerMethod());
+			// 设置 request 参数（RequestMappingHandlerMapping 对其进行了覆写）
 			handleMatch(bestMatch.mapping, lookupPath, request);
+			// 返回匹配的 url 的处理的方法
 			return bestMatch.getHandlerMethod();
 		}
 		else {
+			// 调用 RequestMappingHandlerMapping 类的 handleNoMatch 方法再匹配一次
 			return handleNoMatch(this.mappingRegistry.getRegistrations().keySet(), lookupPath, request);
 		}
 	}

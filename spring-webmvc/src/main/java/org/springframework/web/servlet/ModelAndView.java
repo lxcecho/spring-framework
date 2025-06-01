@@ -50,7 +50,7 @@ public class ModelAndView {
 	@Nullable
 	private Object view;
 
-	/** Model Map. */
+	/** Model Map. 用来存放共享给客户端的数据*/
 	@Nullable
 	private ModelMap model;
 

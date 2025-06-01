@@ -212,6 +212,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		}
 
 		configurePathMatchingProperties(handlerMappingDef, element, context);
+		// HandlerMapping 加入到 IOC 容器
 		readerContext.getRegistry().registerBeanDefinition(HANDLER_MAPPING_BEAN_NAME, handlerMappingDef);
 
 		RuntimeBeanReference corsRef = MvcNamespaceUtils.registerCorsConfigurations(null, context, source);
@@ -242,6 +243,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		handlerAdapterDef.getPropertyValues().add("contentNegotiationManager", contentNegotiationManager);
 		handlerAdapterDef.getPropertyValues().add("webBindingInitializer", bindingDef);
 		handlerAdapterDef.getPropertyValues().add("messageConverters", messageConverters);
+		// 添加 jackson 转化器
 		addRequestBodyAdvice(handlerAdapterDef);
 		addResponseBodyAdvice(handlerAdapterDef);
 
@@ -264,6 +266,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 
 		handlerAdapterDef.getPropertyValues().add("callableInterceptors", callableInterceptors);
 		handlerAdapterDef.getPropertyValues().add("deferredResultInterceptors", deferredResultInterceptors);
+		// HandlerAdapter 加入到 IOC 容器
 		readerContext.getRegistry().registerBeanDefinition(HANDLER_ADAPTER_BEAN_NAME, handlerAdapterDef);
 
 		RootBeanDefinition uriContributorDef =
@@ -327,6 +330,11 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 		return null;
 	}
 
+	/**
+	 * 具体添加 jackson 转化对象方法
+	 *
+	 * @param beanDef
+	 */
 	protected void addRequestBodyAdvice(RootBeanDefinition beanDef) {
 		if (jackson2Present) {
 			beanDef.getPropertyValues().add("requestBodyAdvice",

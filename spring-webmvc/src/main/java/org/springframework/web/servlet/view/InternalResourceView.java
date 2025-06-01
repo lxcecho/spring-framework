@@ -138,15 +138,17 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	protected void renderMergedOutputModel(
 			Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		// 将 model 中的数据遍历后放在 request 中【request.setAttribute(name,value)】
 		// Expose the model object as request attributes.
 		exposeModelAsRequestAttributes(model, request);
 
 		// Expose helpers as request attributes, if any.
 		exposeHelpers(request);
 
-		// Determine the path for the request dispatcher.
+		// Determine the path for the request dispatcher. 获取跳转的页面的路径
 		String dispatcherPath = prepareForRendering(request, response);
 
+		// 调用 request.getRequestDispatcher(path)得到 RequestDispatcher 对象
 		// Obtain a RequestDispatcher for the target resource (typically a JSP).
 		RequestDispatcher rd = getRequestDispatcher(request, dispatcherPath);
 		if (rd == null) {
@@ -154,6 +156,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 					"]: Check that the corresponding file exists within your web application archive!");
 		}
 
+		// 实现页面跳转
 		// If already included or response already committed, perform include, else forward.
 		if (useInclude(request, response)) {
 			response.setContentType(getContentType());
@@ -168,6 +171,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Forwarding to [" + getUrl() + "]");
 			}
+			// 页面跳转
 			rd.forward(request, response);
 		}
 	}

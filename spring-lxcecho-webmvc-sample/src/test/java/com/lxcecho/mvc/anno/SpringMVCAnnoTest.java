@@ -1,10 +1,11 @@
 package com.lxcecho.mvc.anno;
 
-import com.lxcecho.mvc.config.WebConfig;
+import com.lxcecho.mvc.anno.config.WebConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -13,6 +14,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -25,6 +27,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class) // 使用 SpringExtension
 public class SpringMVCAnnoTest {
 
+	/**
+	 * 使用 MockMvc 来模拟请求
+	 */
 	private MockMvc mockMvc;
 
 	@Autowired
@@ -37,12 +42,12 @@ public class SpringMVCAnnoTest {
 
 	@Test
 	public void testHello() throws Exception {
-		mockMvc.perform(get("/sayHello"))
+		// 发送 GET 请求并验证返回的视图名称
+		mockMvc.perform(get("/sayHi").accept(MediaType.APPLICATION_JSON))
+				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(view().name("success"));
-		//System.out.println(wac.getBean("hello"));
+		// System.out.println(wac.getBean("hello"));
 	}
 
-
 }
-

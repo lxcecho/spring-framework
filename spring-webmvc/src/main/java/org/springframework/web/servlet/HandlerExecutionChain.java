@@ -41,10 +41,19 @@ public class HandlerExecutionChain {
 
 	private static final Log logger = LogFactory.getLog(HandlerExecutionChain.class);
 
+	/**
+	 * 请求处理器，通常就是我们自定义的 controller 对象及方法
+	 */
 	private final Object handler;
 
+	/**
+	 * 拦截器，当前请求匹配到的拦截器列表
+	 */
 	private final List<HandlerInterceptor> interceptorList = new ArrayList<>();
 
+	/**
+	 * 拦截器索引，用来记录执行到第几个拦截器了
+	 */
 	private int interceptorIndex = -1;
 
 
@@ -141,12 +150,16 @@ public class HandlerExecutionChain {
 	 * that this interceptor has already dealt with the response itself.
 	 */
 	boolean applyPreHandle(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 1、遍历所有拦截器的 preHandle 方法
 		for (int i = 0; i < this.interceptorList.size(); i++) {
 			HandlerInterceptor interceptor = this.interceptorList.get(i);
 			if (!interceptor.preHandle(request, response, this.handler)) {
+				// 2、如果某个拦截器的 preHandle 方法返回 false，则反向依次调用那些 preHandle 方法返回 ture 的拦截器的 afterCompletion 方法；
+				// 即：有 3 个拦截器，1、2 的 preHandler 返回了 true，而 3 返回的是 false，那么这里将按照 2、1 的顺序调用他们的 afterCompletion 方法
 				triggerAfterCompletion(request, response, null);
 				return false;
 			}
+			// 3、记录拦截器的执行位置
 			this.interceptorIndex = i;
 		}
 		return true;
@@ -158,6 +171,7 @@ public class HandlerExecutionChain {
 	void applyPostHandle(HttpServletRequest request, HttpServletResponse response, @Nullable ModelAndView mv)
 			throws Exception {
 
+		// 逆序调用拦截器的 postHandle 方法
 		for (int i = this.interceptorList.size() - 1; i >= 0; i--) {
 			HandlerInterceptor interceptor = this.interceptorList.get(i);
 			interceptor.postHandle(request, response, this.handler, mv);
@@ -170,6 +184,7 @@ public class HandlerExecutionChain {
 	 * has successfully completed and returned true.
 	 */
 	void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, @Nullable Exception ex) {
+		// 通过拦截器当前执行的位置 interceptorIndex 逆向调用拦截器的 afterCompletion 方法
 		for (int i = this.interceptorIndex; i >= 0; i--) {
 			HandlerInterceptor interceptor = this.interceptorList.get(i);
 			try {
