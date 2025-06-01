@@ -61,6 +61,10 @@ import org.springframework.beans.BeansException;
  */
 @FunctionalInterface
 public interface BeanFactoryPostProcessor {
+	/**
+	 * Bean 工厂的后置处理器，是属于 ApplicationContext 中的一个属性，是 ApplicationContext 在实例化一个 BeanFactory 后，
+	 * 可以利用 BeanFactoryPostProcessor 继续处理 BeanFactory
+	 */
 
 	/**
 	 * Modify the application context's internal bean factory after its standard

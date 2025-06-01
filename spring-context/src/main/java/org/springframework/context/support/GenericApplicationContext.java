@@ -104,7 +104,9 @@ import org.springframework.util.Assert;
  * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
  */
 public class GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry {
+	// 提供不可以刷新的 ApplicationContext
 
+	// 组合了 DefaultListableBeanFactory 档案馆，提供自动装配的能力
 	private final DefaultListableBeanFactory beanFactory;
 
 	@Nullable
