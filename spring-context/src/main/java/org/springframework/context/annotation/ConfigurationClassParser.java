@@ -155,12 +155,17 @@ class ConfigurationClassParser {
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, resourceLoader);
 	}
 
-
+	/**
+	 * 解析配置类；所有需要扫描进来的组件 BeanDefinition 信息都已完成
+	 *
+	 * @param configCandidates
+	 */
 	public void parse(Set<BeanDefinitionHolder> configCandidates) {
 		for (BeanDefinitionHolder holder : configCandidates) {
 			BeanDefinition bd = holder.getBeanDefinition();
 			try {
 				if (bd instanceof AnnotatedBeanDefinition annotatedBeanDef) {
+					// 解析配置类所有注解信息
 					parse(annotatedBeanDef.getMetadata(), holder.getBeanName());
 				}
 				else if (bd instanceof AbstractBeanDefinition abstractBeanDef && abstractBeanDef.hasBeanClass()) {
@@ -192,6 +197,13 @@ class ConfigurationClassParser {
 		processConfigurationClass(new ConfigurationClass(clazz, beanName), DEFAULT_EXCLUSION_FILTER);
 	}
 
+	/**
+	 * 解析配置类
+	 *
+	 * @param metadata
+	 * @param beanName
+	 * @throws IOException
+	 */
 	protected final void parse(AnnotationMetadata metadata, String beanName) throws IOException {
 		processConfigurationClass(new ConfigurationClass(metadata, beanName), DEFAULT_EXCLUSION_FILTER);
 	}
@@ -220,6 +232,7 @@ class ConfigurationClassParser {
 			return;
 		}
 
+		// Spring 底层大量使用缓存来保证框架速度
 		ConfigurationClass existingClass = this.configurationClasses.get(configClass);
 		if (existingClass != null) {
 			if (configClass.isImported()) {
@@ -240,10 +253,12 @@ class ConfigurationClassParser {
 		// Recursively process the configuration class and its superclass hierarchy.
 		SourceClass sourceClass = asSourceClass(configClass, filter);
 		do {
+			// 解析配置类里面所有类注解
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass, filter);
 		}
 		while (sourceClass != null);
 
+		// 只要这个配置类解析过，就放在已经解析好的集合中防止重复解析
 		this.configurationClasses.put(configClass, configClass);
 	}
 
@@ -284,6 +299,7 @@ class ConfigurationClassParser {
 		if (!componentScans.isEmpty() &&
 				!this.conditionEvaluator.shouldSkip(sourceClass.getMetadata(), ConfigurationPhase.REGISTER_BEAN)) {
 			for (AnnotationAttributes componentScan : componentScans) {
+				// 使用 Scan 把 @ComponentScan 指定的包下所有组件都扫描进来并注册 Bean 定义信息
 				// The config class is annotated with @ComponentScan -> perform the scan immediately
 				Set<BeanDefinitionHolder> scannedBeanDefinitions =
 						this.componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
@@ -300,6 +316,7 @@ class ConfigurationClassParser {
 			}
 		}
 
+		// 处理 @Import 注解的地方【AOP 就是利用这个地方导入一个后置处理器的】
 		// Process any @Import annotations
 		processImports(configClass, sourceClass, getImports(sourceClass), filter, true);
 

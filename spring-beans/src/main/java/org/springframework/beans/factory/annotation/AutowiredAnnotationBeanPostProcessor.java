@@ -358,7 +358,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 		// Quick check on the concurrent map first, with minimal locking.
 		Constructor<?>[] candidateConstructors = this.candidateConstructorsCache.get(beanClass);
 		if (candidateConstructors == null) {
-			// Fully synchronized resolution now...
+			// Fully synchronized resolution now...双重检查应用==线程安全
 			synchronized (this.candidateConstructorsCache) {
 				candidateConstructors = this.candidateConstructorsCache.get(beanClass);
 				if (candidateConstructors == null) {
@@ -492,8 +492,10 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 
 	@Override
 	public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) {
+		// 找到自动装配的元信息，即 获取指定类中 @Autowired 相关注解的元信息
 		InjectionMetadata metadata = findAutowiringMetadata(beanName, bean.getClass(), pvs);
 		try {
+			// 对 Bean 的属性进行自动注入
 			metadata.inject(bean, beanName, pvs);
 		}
 		catch (BeanCreationException ex) {
@@ -540,6 +542,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 					if (metadata != null) {
 						metadata.clear(pvs);
 					}
+					// 下面是分析当前类方法或者属性有没有标注 @Autowired 等自动赋值的注解
 					metadata = buildAutowiringMetadata(clazz);
 					this.injectionMetadataCache.put(cacheKey, metadata);
 				}
@@ -558,6 +561,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 
 		do {
 			final List<InjectionMetadata.InjectedElement> fieldElements = new ArrayList<>();
+			// 找所有属性中标注了 @Autowired、@Value、@Inject 注解
 			ReflectionUtils.doWithLocalFields(targetClass, field -> {
 				MergedAnnotation<?> ann = findAutowiredAnnotation(field);
 				if (ann != null) {
@@ -573,6 +577,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 			});
 
 			final List<InjectionMetadata.InjectedElement> methodElements = new ArrayList<>();
+			// 拿到所有方法，看有没有 @Autowired 注解
 			ReflectionUtils.doWithLocalMethods(targetClass, method -> {
 				Method bridgedMethod = BridgeMethodResolver.findBridgedMethod(method);
 				if (!BridgeMethodResolver.isVisibilityBridgeMethodPair(method, bridgedMethod)) {

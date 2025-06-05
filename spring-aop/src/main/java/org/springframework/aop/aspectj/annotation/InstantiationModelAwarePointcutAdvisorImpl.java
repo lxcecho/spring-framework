@@ -97,6 +97,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 		this.declarationOrder = declarationOrder;
 		this.aspectName = aspectName;
 
+		// 判断当前的切面对象是否需要延时加载
 		if (aspectInstanceFactory.getAspectMetadata().isLazilyInstantiated()) {
 			// Static part of the pointcut is a lazy type.
 			Pointcut preInstantiationPointcut = Pointcuts.union(
@@ -110,9 +111,11 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 			this.lazy = true;
 		}
 		else {
+			// 一般不需要延迟加载，直接实例化
 			// A singleton aspect.
 			this.pointcut = this.declaredPointcut;
 			this.lazy = false;
+			// 将切面中的通知构造为 advice 通知对象
 			this.instantiatedAdvice = instantiateAdvice(this.declaredPointcut);
 		}
 	}
