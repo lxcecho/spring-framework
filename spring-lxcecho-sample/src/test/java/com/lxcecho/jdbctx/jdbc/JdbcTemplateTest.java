@@ -1,5 +1,6 @@
 package com.lxcecho.jdbctx.jdbc;
 
+import com.lxcecho.entity.Emp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

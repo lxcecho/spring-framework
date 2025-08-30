@@ -1,9 +1,9 @@
 package com.lxcecho.ioc;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.lxcecho.ioc.iocxml.bean.*;
-import com.lxcecho.ioc.iocxml.controller.UserController;
-import com.lxcecho.ioc.iocxml.dao.UserDao;
+import com.lxcecho.xml.ioc.bean.*;
+import com.lxcecho.xml.ioc.controller.UserController;
+import com.lxcecho.xml.ioc.dao.UserDao;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

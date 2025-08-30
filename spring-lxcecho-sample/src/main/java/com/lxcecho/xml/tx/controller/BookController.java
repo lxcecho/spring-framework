@@ -1,0 +1,28 @@
+package com.lxcecho.xml.tx.controller;
+
+import com.lxcecho.xml.tx.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+/**
+ * @author lxcecho lxcecho@gmail.com
+ * @since 2023/12/11
+ */
+@Controller
+public class BookController {
+
+	@Autowired
+	private BookService bookService;
+
+	/**
+	 * 买书的方法：图书 id 和用户 id
+	 *
+	 * @param bookId
+	 * @param userId
+	 */
+	public void buyBook(Integer bookId, Integer userId) {
+		// 调用 service 方法
+		bookService.buyBook(bookId, userId);
+	}
+
+}

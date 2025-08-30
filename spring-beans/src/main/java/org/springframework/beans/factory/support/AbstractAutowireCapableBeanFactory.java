@@ -612,7 +612,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 		}
 
-		// TODO 向容器中缓存单例模式的 Bean 对象，以防循环引用，即提前暴露单实例，专门解决 循环引用问题
+		// TODO 向容器中缓存单例模式的 Bean 对象，以防循环引用，即提前暴露单实例，专门解决：循环引用问题
 		// Eagerly cache singletons to be able to resolve circular references
 		// even when triggered by lifecycle interfaces like BeanFactoryAware.
 		boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&

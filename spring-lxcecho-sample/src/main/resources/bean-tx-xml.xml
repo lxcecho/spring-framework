@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!--1. 开启组件扫描-->
-	<context:component-scan base-package="com.lxcecho.jdbctx.xmltx"/>
+	<context:component-scan base-package="com.lxcecho.xml.tx"/>
 
 	<!--2. 数据源对象-->
 	<!--引入外部属性文件，创建数据源对象-->

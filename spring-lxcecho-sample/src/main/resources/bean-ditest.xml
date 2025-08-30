@@ -35,11 +35,11 @@
 	<!--    </bean>-->
 
 	<!--第三种方式 级联赋值-->
-	<bean id="dept3" class="com.lxcecho.ioc.iocxml.bean.Dept">
+	<bean id="dept3" class="com.lxcecho.xml.ioc.bean.Dept">
 		<property name="dname" value="技术研发部"></property>
 	</bean>
 
-	<bean id="emp3" class="com.lxcecho.ioc.iocxml.bean.Emp">
+	<bean id="emp3" class="com.lxcecho.xml.ioc.bean.Emp">
 		<property name="ename" value="tom"></property>
 		<property name="age" value="30"></property>
 		<property name="dept" ref="dept3"></property>

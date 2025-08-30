@@ -15,12 +15,12 @@
     </bean>-->
 
     <!--根据名称自动装配-->
-    <bean id="userController" class="com.lxcecho.ioc.iocxml.controller.UserController"
+    <bean id="userController" class="com.lxcecho.xml.ioc.controller.UserController"
           autowire="byName">
     </bean>
-    <bean id="userService" class="com.lxcecho.ioc.iocxml.service.impl.UserServiceImpl"
+    <bean id="userService" class="com.lxcecho.xml.ioc.service.impl.UserServiceImpl"
           autowire="byName">
     </bean>
-    <bean id="userDao" class="com.lxcecho.ioc.iocxml.dao.impl.UserDaoImpl">
+    <bean id="userDao" class="com.lxcecho.xml.ioc.dao.impl.UserDaoImpl">
     </bean>
 </beans>

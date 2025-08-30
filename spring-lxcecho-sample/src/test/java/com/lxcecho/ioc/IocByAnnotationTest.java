@@ -1,8 +1,8 @@
 package com.lxcecho.ioc;
 
-import com.lxcecho.ioc.iocanno.config.SpringConfig;
-import com.lxcecho.ioc.iocanno.controller.AutowiredBaseController;
-import com.lxcecho.ioc.iocanno.controller.ResourceUserController;
+import com.lxcecho.anno.ioc.config.SpringConfig;
+import com.lxcecho.anno.ioc.controller.AutowiredBaseController;
+import com.lxcecho.anno.ioc.controller.ResourceUserController;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

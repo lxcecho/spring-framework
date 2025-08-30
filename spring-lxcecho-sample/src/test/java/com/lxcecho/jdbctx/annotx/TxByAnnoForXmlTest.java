@@ -1,6 +1,6 @@
 package com.lxcecho.jdbctx.annotx;
 
-import com.lxcecho.jdbctx.annotx.controller.BookController;
+import com.lxcecho.anno.tx.controller.BookController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;

@@ -21,7 +21,7 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.ClassMetadata;
 
 /**
- * Simple facade for accessing class metadata,
+ * Simple facade for accessing class metadata, 类的元数据读取器，默认实现类为 SimpleMetadataReader
  * as read by an ASM {@link org.springframework.asm.ClassReader}.
  *
  * @author Juergen Hoeller

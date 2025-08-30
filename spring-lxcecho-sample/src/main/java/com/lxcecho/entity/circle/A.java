@@ -1,0 +1,24 @@
+package com.lxcecho.entity.circle;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+/**
+ * @author lxcecho lxcecho@gmail.com
+ * @since 02.05.2022
+ */
+@Component
+public class A {
+
+	private B b;
+
+	public A() {
+		System.out.println("A Constructor...");
+	}
+
+	@Autowired
+	public void setA(B b) {
+		this.b = b;
+	}
+
+}

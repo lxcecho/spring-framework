@@ -63,6 +63,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.jndi.JndiObjectFactoryBean
  */
 public interface FactoryBean<T> {
+	/*如果想一个 Bean 完完全全由自己来创造，也是可以的，即通过实现 FactoryBean 接口，但是这种方式创建出来的 Bean，只会经过初始化，不会有 Spring 的生命周期步骤处理。*/
 
 	/**
 	 * The name of an attribute that can be

@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!--开启组件扫描-->
-	<context:component-scan base-package="com.lxcecho.aop.annoaop"/>
+	<context:component-scan base-package="com.lxcecho.anno.aop"/>
 
 	<!--开启 aspectj 自动代理，为目标对象生成代理-->
 	<aop:aspectj-autoproxy/>

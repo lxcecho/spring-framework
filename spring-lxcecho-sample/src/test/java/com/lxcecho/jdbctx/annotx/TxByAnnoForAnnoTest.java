@@ -1,7 +1,7 @@
 package com.lxcecho.jdbctx.annotx;
 
-import com.lxcecho.jdbctx.annotx.config.TxConfig;
-import com.lxcecho.jdbctx.annotx.controller.BookController;
+import com.lxcecho.anno.tx.config.TxConfig;
+import com.lxcecho.anno.tx.controller.BookController;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

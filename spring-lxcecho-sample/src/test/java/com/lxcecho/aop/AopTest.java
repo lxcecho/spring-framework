@@ -1,7 +1,7 @@
 package com.lxcecho.aop;
 
-import com.lxcecho.aop.annoaop.Calculator;
-import com.lxcecho.aop.annoaop.SpringAopConfig;
+import com.lxcecho.anno.aop.Calculator;
+import com.lxcecho.anno.aop.SpringAopConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -30,7 +30,7 @@ public class AopTest {
 	@Test
 	public void testAdd02() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("bean-aopxml.xml");
-		com.lxcecho.aop.xmlaop.Calculator calculator = context.getBean(com.lxcecho.aop.xmlaop.Calculator.class);
+		com.lxcecho.xml.aop.Calculator calculator = context.getBean(com.lxcecho.xml.aop.Calculator.class);
 		calculator.add(4, 3);
 	}
 
