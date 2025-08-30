@@ -1,4 +1,4 @@
-package com.lxcecho.anno;
+package com.lxcecho.spring;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,9 +7,12 @@ import java.lang.annotation.Target;
 
 /**
  * @author lxcecho lxcecho@gmail.com
- * @since 2023/12/11
+ * @since 2025-08-30
  */
-@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Di {
+@Target(ElementType.TYPE)
+public @interface Component {
+
+	String value() default "";
+
 }

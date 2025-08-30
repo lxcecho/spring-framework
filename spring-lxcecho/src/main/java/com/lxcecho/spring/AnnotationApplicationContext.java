@@ -1,15 +1,9 @@
-package com.lxcecho.bean;
-
-import com.lxcecho.anno.Bean;
-import com.lxcecho.anno.Di;
+package com.lxcecho.spring;
 
 import java.io.File;
-import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +28,8 @@ public class AnnotationApplicationContext implements ApplicationContext {
 		return beanFactory.get(clazz);
 	}
 
-	//创建有参数构造，传递包路径，设置包扫描规则
-	//当前包及其子包，哪个类有@Bean注解，把这个类通过反射实例化
+	// 创建有参数构造，传递包路径，设置包扫描规则
+	// 当前包及其子包，哪个类有@Bean注解，把这个类通过反射实例化
 	public AnnotationApplicationContext(String basePackage) {
 		try {
 			// com.lxcecho
@@ -64,7 +58,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
 		loadDi();
 	}
 
-	//包扫描过程，实例化
+	// 包扫描过程，实例化
 	private void loadBean(File file) throws Exception {
 		//1 判断当前是否文件夹
 		if (file.isDirectory()) {
@@ -139,7 +133,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
 			//3 遍历得到每个对象属性数组，得到每个属性
 			for (Field field : declaredFields) {
 				//4 判断属性上面是否有@Di注解
-				Di annotation = field.getAnnotation(Di.class);
+				DI annotation = field.getAnnotation(DI.class);
 				if (annotation != null) {
 					//如果私有属性，设置可以设置值
 					field.setAccessible(true);

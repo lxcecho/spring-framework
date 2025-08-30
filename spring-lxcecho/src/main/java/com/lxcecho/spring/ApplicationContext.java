@@ -1,4 +1,4 @@
-package com.lxcecho.bean;
+package com.lxcecho.spring;
 
 /**
  * @author lxcecho lxcecho@gmail.com

@@ -1,6 +1,6 @@
 package com.lxcecho.dao.impl;
 
-import com.lxcecho.anno.Bean;
+import com.lxcecho.spring.Bean;
 import com.lxcecho.dao.UserDao;
 
 /**
