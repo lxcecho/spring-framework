@@ -23,7 +23,7 @@ package org.springframework.beans.factory;
  *
  * <p>This is mainly intended to be implemented by framework classes which
  * have to pick up application classes by name despite themselves potentially
- * being loaded from a shared class loader.
+ * being loaded from a shared class loader. 回传 classLoader 给 bean 对象。
  *
  * <p>For a list of all bean lifecycle methods, see the
  * {@link BeanFactory BeanFactory javadocs}.

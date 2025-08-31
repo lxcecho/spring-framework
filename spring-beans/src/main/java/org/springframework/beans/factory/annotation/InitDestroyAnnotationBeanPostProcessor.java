@@ -87,6 +87,8 @@ import org.springframework.util.ReflectionUtils;
 public class InitDestroyAnnotationBeanPostProcessor implements DestructionAwareBeanPostProcessor,
 		MergedBeanDefinitionPostProcessor, BeanRegistrationAotProcessor, PriorityOrdered, Serializable {
 
+	// Bean 初始化前，InitDestroyAnnotationBeanPostProcessor 会在初始化前这个步骤中执行 @PostConstruct 的方法，
+
 	private final transient LifecycleMetadata emptyLifecycleMetadata =
 			new LifecycleMetadata(Object.class, Collections.emptyList(), Collections.emptyList()) {
 				@Override

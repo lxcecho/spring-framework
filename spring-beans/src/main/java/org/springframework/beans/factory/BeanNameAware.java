@@ -21,7 +21,7 @@ package org.springframework.beans.factory;
  * bean name in a bean factory. Note that it is not usually recommended
  * that an object depends on its bean name, as this represents a potentially
  * brittle dependence on external configuration, as well as a possibly
- * unnecessary dependence on a Spring API.
+ * unnecessary dependence on a Spring API. 回传 beanName 给 bean 对象。
  *
  * <p>For a list of all bean lifecycle methods, see the
  * {@link BeanFactory BeanFactory javadocs}.

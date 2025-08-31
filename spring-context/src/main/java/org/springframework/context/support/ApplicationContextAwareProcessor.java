@@ -88,27 +88,31 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 		return bean;
 	}
 
+	/**
+	 * 在 Bean 初始化前这个步骤中进行其他 Aware 的回调
+	 * @param bean
+	 */
 	private void invokeAwareInterfaces(Object bean) {
 		if (bean instanceof Aware) {
-			if (bean instanceof EnvironmentAware environmentAware) {
+			if (bean instanceof EnvironmentAware environmentAware) { // 回传环境变量
 				environmentAware.setEnvironment(this.applicationContext.getEnvironment());
 			}
-			if (bean instanceof EmbeddedValueResolverAware embeddedValueResolverAware) {
+			if (bean instanceof EmbeddedValueResolverAware embeddedValueResolverAware) { // 回传占位符解析器
 				embeddedValueResolverAware.setEmbeddedValueResolver(this.embeddedValueResolver);
 			}
-			if (bean instanceof ResourceLoaderAware resourceLoaderAware) {
+			if (bean instanceof ResourceLoaderAware resourceLoaderAware) { // 回传资源加载器
 				resourceLoaderAware.setResourceLoader(this.applicationContext);
 			}
-			if (bean instanceof ApplicationEventPublisherAware applicationEventPublisherAware) {
+			if (bean instanceof ApplicationEventPublisherAware applicationEventPublisherAware) { // 回传事件发布器
 				applicationEventPublisherAware.setApplicationEventPublisher(this.applicationContext);
 			}
-			if (bean instanceof MessageSourceAware messageSourceAware) {
+			if (bean instanceof MessageSourceAware messageSourceAware) { // 回传国际化资源
 				messageSourceAware.setMessageSource(this.applicationContext);
 			}
-			if (bean instanceof ApplicationStartupAware applicationStartupAware) {
+			if (bean instanceof ApplicationStartupAware applicationStartupAware) { // 回传应用其他监听对象，可忽略
 				applicationStartupAware.setApplicationStartup(this.applicationContext.getApplicationStartup());
 			}
-			if (bean instanceof ApplicationContextAware applicationContextAware) {
+			if (bean instanceof ApplicationContextAware applicationContextAware) { // 回传 Spring 容器 ApplicationContext
 				applicationContextAware.setApplicationContext(this.applicationContext);
 			}
 		}

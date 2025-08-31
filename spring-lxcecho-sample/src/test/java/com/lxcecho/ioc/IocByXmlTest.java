@@ -21,10 +21,10 @@ public class IocByXmlTest {
 		// set 方法注入
 		Book book = new Book();
 		book.setBname("java");
-		book.setAuthor("尚硅谷");
+		book.setAuthor("A");
 
 		// 通过构造器注入
-		Book book1 = new Book("c++", "尚硅谷");
+		Book book1 = new Book("c++", "AAA");
 	}
 
 	@Test

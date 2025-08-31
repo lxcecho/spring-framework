@@ -82,7 +82,8 @@ public interface BeanPostProcessor {
 	}
 
 	/**
-	 * 在 afterPropertiesSet 或者自定义 init 方法执行之后，为在 Bean 的初始化之后提供回调的入口
+	 * 在 afterPropertiesSet 或者自定义 init 方法执行之后，为在 Bean 的初始化之后提供回调的入口;
+	 * Spring 中的 AOP 就是基于初始化后实现的，初始化后返回的对象才是最终的 Bean 对象。
 	 *
 	 * Apply this {@code BeanPostProcessor} to the given new bean instance <i>after</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}

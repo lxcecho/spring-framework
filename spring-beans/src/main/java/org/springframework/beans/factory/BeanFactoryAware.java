@@ -25,7 +25,7 @@ import org.springframework.beans.BeansException;
  * <p>For example, beans can look up collaborating beans via the factory
  * (Dependency Lookup). Note that most beans will choose to receive references
  * to collaborating beans via corresponding bean properties or constructor
- * arguments (Dependency Injection).
+ * arguments (Dependency Injection). 回传 beanFactory 给对象。
  *
  * <p>For a list of all bean lifecycle methods, see the
  * {@link BeanFactory BeanFactory javadocs}.

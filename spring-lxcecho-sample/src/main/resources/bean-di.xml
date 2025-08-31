@@ -3,10 +3,10 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!--1 set方法注入-->
+	<!--1 set 方法注入-->
 	<bean id="book" class="com.lxcecho.xml.ioc.bean.Book">
-		<property name="bname" value="前端开发"></property>
-		<property name="author" value="尚硅谷"></property>
+		<property name="bname" value="WWW"></property>
+		<property name="author" value="BBB"></property>
 		<!--        <property name="others">-->
 		<!--            <null/>-->
 		<!--        </property>-->
@@ -18,8 +18,8 @@
 
 	<!--2 构造器注入-->
 	<bean id="bookCon" class="com.lxcecho.xml.ioc.bean.Book">
-		<constructor-arg name="bname" value="java开发"></constructor-arg>
-		<constructor-arg name="author" value="尚硅谷"></constructor-arg>
+		<constructor-arg name="bname" value="CCC"></constructor-arg>
+		<constructor-arg name="author" value="AAA"></constructor-arg>
 	</bean>
 
 </beans>
