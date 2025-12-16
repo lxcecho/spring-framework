@@ -48,9 +48,10 @@ public class JavaConventions {
 		);
 		COMPILER_ARGS = new ArrayList<>();
 		COMPILER_ARGS.addAll(commonCompilerArgs);
+		/* lxcecho: JDK版本升级编译时，经常出现警告错误，源头就是：-Werror 参数，可以将其注释掉，并使用命令清除一下编译缓存： ./gradlew clean :spring-aop:compileJava */
 		COMPILER_ARGS.addAll(Arrays.asList(
 				"-Xlint:varargs", "-Xlint:fallthrough", "-Xlint:rawtypes", "-Xlint:deprecation",
-				"-Xlint:unchecked", "-Werror"
+				"-Xlint:unchecked"/*, "-Werror"*/
 		));
 		TEST_COMPILER_ARGS = new ArrayList<>();
 		TEST_COMPILER_ARGS.addAll(commonCompilerArgs);

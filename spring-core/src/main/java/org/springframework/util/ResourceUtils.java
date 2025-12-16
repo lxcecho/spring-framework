@@ -405,7 +405,6 @@ public abstract class ResourceUtils {
 	 */
 	public static URL toURL(String location) throws MalformedURLException {
 		// Equivalent without java.net.URL constructor - for building on JDK 20+
-		/*
 		try {
 			return toURI(StringUtils.cleanPath(location)).toURL();
 		}
@@ -414,9 +413,9 @@ public abstract class ResourceUtils {
 			exToThrow.initCause(ex);
 			throw exToThrow;
 		}
-		*/
 
-		return new URL(location);
+		// lxcecho: JDK upgrade to 21
+//		return new URL(location);
 	}
 
 	/**
@@ -434,11 +433,10 @@ public abstract class ResourceUtils {
 		relativePath = StringUtils.replace(relativePath, "#", "%23");
 
 		// Equivalent without java.net.URL constructor - for building on JDK 20+
-		/*
 		return toURL(StringUtils.applyRelativePath(root.toString(), relativePath));
-		*/
 
-		return new URL(root, relativePath);
+		// lxcecho: JDK upgrade to 21
+//		return new URL(root, relativePath);
 	}
 
 	/**

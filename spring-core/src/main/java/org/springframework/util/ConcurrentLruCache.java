@@ -405,7 +405,8 @@ public final class ConcurrentLruCache<K, V> {
 		}
 
 		private static int getBufferIndex() {
-			return ((int) Thread.currentThread().getId()) & BUFFERS_MASK;
+			// lxcecho: JDK upgrade to 21
+			return ((int) Thread.currentThread().threadId()) & BUFFERS_MASK;
 		}
 
 		boolean recordRead(Node<K, V> node) {
@@ -419,7 +420,8 @@ public final class ConcurrentLruCache<K, V> {
 		}
 
 		void drain() {
-			final int start = (int) Thread.currentThread().getId();
+			// lxcecho: JDK upgrade to 21
+			final int start = (int) Thread.currentThread().threadId();
 			final int end = start + BUFFER_COUNT;
 			for (int i = start; i < end; i++) {
 				drainReadBuffer(i & BUFFERS_MASK);
