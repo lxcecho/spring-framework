@@ -19,9 +19,12 @@ ext {
 configure(allprojects) { project ->
 	repositories {
 		mavenLocal()
-		mavenCentral()
+        maven { url "https://maven.aliyun.com/repository/public" } // 主力镜像
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/spring' }
 		google()
-		maven {
+        mavenCentral()
+        maven {
 			url "https://maven.aliyun.com/repository/spring"
 //			url "https://repo.spring.io/milestone"
 			content {
@@ -30,13 +33,7 @@ configure(allprojects) { project ->
 			}
 		}
 		if (version.contains('-')) {
-			maven { url "https://maven.aliyun.com/repository/public" }
-			maven { url "https://maven.aliyun.com/repository/central" }
-			maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
-			maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
-			maven { url "https://maven.aliyun.com/repository/spring" }
-			maven { url "https://maven.aliyun.com/repository/spring-plugin"}
-//			maven { url "https://repo.spring.io/milestone" }
+			maven { url "https://repo.spring.io/milestone" }
 		}
 		if (version.endsWith('-SNAPSHOT')) {
 			maven { url "https://repo.spring.io/snapshot" }

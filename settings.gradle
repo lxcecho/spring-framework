@@ -1,16 +1,14 @@
 pluginManagement {
 	repositories {
 		mavenLocal()
-		maven { url "https://maven.aliyun.com/repository/public" }
-		maven { url "https://maven.aliyun.com/repository/central" }
-		maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
-		maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
-		maven { url "https://maven.aliyun.com/repository/spring" }
-		maven { url "https://maven.aliyun.com/repository/spring-plugin"}
-		google()
-		mavenCentral()
-		gradlePluginPortal()
-		maven { url "https://repo.spring.io/release" }
+        gradlePluginPortal()
+        maven { url "https://maven.aliyun.com/repository/public" }
+        google()
+        mavenCentral()
+        // 仅当阿里云缺失时 fallback 到官方 Spring 仓库
+        maven { url "https://repo.spring.io/release" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://repo.spring.io/snapshot" }
 	}
 }
 
