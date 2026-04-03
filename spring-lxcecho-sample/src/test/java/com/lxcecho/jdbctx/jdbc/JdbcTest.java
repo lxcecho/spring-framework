@@ -20,18 +20,18 @@ public class JdbcTest {
 
 		try {
 			// 加载驱动类
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			// 数据库连接
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spring", "root", "Amecho00#");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spring", "root", "lxcecho00@");
 			// 关闭事务自动提交
 			connection.setAutoCommit(false);
 			// 定义 sql
 			String sql = "update goods_stock set stock = stock - ? where id = ?";
 			// 获取 sql 执行对象
 			preparedStatement = connection.prepareStatement(sql);
-			// 设置参数
+			// 设置参数，两个占位符
 			preparedStatement.setInt(1, 10);
-			preparedStatement.setInt(2, 1);
+			preparedStatement.setInt(2, 1001);
 			// 执行 sql
 			preparedStatement.executeUpdate();
 			// 提交事务

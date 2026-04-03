@@ -10,34 +10,24 @@
 	-->
 	<bean id="teacherone" class="com.lxcecho.xml.ioc.bean.Teacher">
 		<!--注入普通类型属性-->
-		<property name="teacherId" value="100"></property>
-		<property name="teacherName" value="西门讲师"></property>
+		<property name="teacherId" value="100"/>
+		<property name="teacherName" value="西门讲师"/>
 	</bean>
 	<bean id="teachertwo" class="com.lxcecho.xml.ioc.bean.Teacher">
 		<!--注入普通类型属性-->
-		<property name="teacherId" value="200"></property>
-		<property name="teacherName" value="上官讲师"></property>
+		<property name="teacherId" value="200"/>
+		<property name="teacherName" value="上官讲师"/>
 	</bean>
 
 	<bean id="student" class="com.lxcecho.xml.ioc.bean.Student">
 		<!--注入普通类型属性-->
-		<property name="sid" value="2000"></property>
-		<property name="sname" value="张三"></property>
+		<property name="sid" value="2000"/>
+		<property name="sname" value="张三"/>
 		<!--在学生bean注入map集合类型属性-->
 		<property name="teacherMap">
 			<map>
-				<entry>
-					<key>
-						<value>10010</value>
-					</key>
-					<ref bean="teacherone"></ref>
-				</entry>
-				<entry>
-					<key>
-						<value>10086</value>
-					</key>
-					<ref bean="teachertwo"></ref>
-				</entry>
+				<entry key="10010" value-ref="teacherone"/>
+				<entry key="10086" value-ref="teachertwo"/>
 			</map>
 		</property>
 	</bean>

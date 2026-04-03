@@ -5,8 +5,8 @@
 
 	<!--1 set 方法注入-->
 	<bean id="book" class="com.lxcecho.xml.ioc.bean.Book">
-		<property name="bname" value="WWW"></property>
-		<property name="author" value="BBB"></property>
+		<property name="bname" value="WWW"/>
+		<property name="author" value="BBB"/>
 		<!--        <property name="others">-->
 		<!--            <null/>-->
 		<!--        </property>-->
@@ -18,8 +18,8 @@
 
 	<!--2 构造器注入-->
 	<bean id="bookCon" class="com.lxcecho.xml.ioc.bean.Book">
-		<constructor-arg name="bname" value="CCC"></constructor-arg>
-		<constructor-arg name="author" value="AAA"></constructor-arg>
+		<constructor-arg name="bname" value="CCC"/>
+		<constructor-arg name="author" value="AAA"/>
 	</bean>
 
 </beans>

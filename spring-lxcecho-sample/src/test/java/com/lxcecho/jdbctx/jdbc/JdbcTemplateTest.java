@@ -35,7 +35,7 @@ public class JdbcTemplateTest {
 					emp.setSex(rs.getString("sex"));
 					return emp;
 				}, 1);
-		System.out.println(empResult);
+		System.err.println(empResult.toString());
 
 		// 写法二
 		/*String sql = "select * from t_emp where id=?";
