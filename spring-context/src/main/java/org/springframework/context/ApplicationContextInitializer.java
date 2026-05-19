@@ -31,6 +31,9 @@ package org.springframework.context;
  * implemented or if the {@link org.springframework.core.annotation.Order @Order}
  * annotation is present and to sort instances accordingly if so prior to invocation.
  *
+ * 用来初始化 Spring 容器的 ApplicationContext 对象的，如可以利用 ApplicationContextInitializer 来向
+ * Spring 容器中添加 ApplicationListener。
+ *
  * @author Chris Beams
  * @since 3.1
  * @param <C> the application context type

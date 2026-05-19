@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
  * @since 2023/12/10
  */
 @Configuration // 配置类
-@ComponentScan("com.lxcecho.ioc.iocanno") // 开启组件扫描
+@ComponentScan("com.lxcecho.anno.ioc") // 开启组件扫描
 public class SpringConfig {
 }

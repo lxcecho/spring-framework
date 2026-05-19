@@ -5,16 +5,20 @@ import com.lxcecho.service.OrderService;
 import com.lxcecho.spring.*;
 import com.lxcecho.dao.UserDao;
 import com.lxcecho.service.UserService;
+import com.lxcecho.spring.annotation.EchoAutowired;
+import com.lxcecho.spring.annotation.EchoBean;
+import com.lxcecho.spring.annotation.EchoComponent;
+import com.lxcecho.spring.annotation.EchoDI;
 
 /**
  * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/11
  */
-@Bean
-@Component
-public class UserServiceImpl implements UserService, BeanNameAware {
+@EchoBean
+@EchoComponent
+public class UserServiceImpl implements UserService, EchoBeanNameAware {
 
-	@DI
+	@EchoDI
 	private UserDao userDao;
 
 	public void add() {
@@ -28,7 +32,7 @@ public class UserServiceImpl implements UserService, BeanNameAware {
 		System.out.println(beanName);
 	}
 
-	@Autowired
+	@EchoAutowired
 	private OrderService orderService;
 
 	@EchoValue("xxx")

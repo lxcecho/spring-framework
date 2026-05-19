@@ -589,6 +589,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 				configureAndRefreshWebApplicationContext(cwac);
 			}
 		}
+		// 先去 ServletContext 中查找 web 容器的引用是否存在，并创建好默认的空的 IOC 容器
 		if (wac == null) {
 			// No context instance was injected at construction time -> see if one
 			// has been registered in the servlet context. If one exists, it is assumed
@@ -596,6 +597,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 			// user has performed any initialization such as setting the context id
 			wac = findWebApplicationContext();
 		}
+		// 给上一步创建好的 IOC 容器赋值
 		if (wac == null) {
 			// No context instance is defined for this servlet -> create a local one
 			wac = createWebApplicationContext(rootContext);
