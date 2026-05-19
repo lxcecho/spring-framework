@@ -1,0 +1,14 @@
+description "My Custom Spring"
+
+group = 'com.lxcecho'
+version = '6.0.15-SNAPSHOT'
+
+dependencies {
+//    api(project(":spring-context"))
+    optional("jakarta.servlet:jakarta.servlet-api")
+    optional("jakarta.servlet.jsp:jakarta.servlet.jsp-api")
+    optional("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api")
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}

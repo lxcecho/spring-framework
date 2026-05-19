@@ -65,7 +65,7 @@ settings.gradle.projectsLoaded {
 		}
 	}
 }
-include 'spring-lxcecho'
+include 'spring-lxcecho-customer-demo'
 include 'spring-lxcecho-sample'
 include 'spring-lxcecho-notes'
 include 'spring-lxcecho-webmvc-sample'
