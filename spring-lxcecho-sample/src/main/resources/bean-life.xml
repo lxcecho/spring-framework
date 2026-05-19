@@ -8,6 +8,6 @@
 		<property name="name" value="lucy"/>
 	</bean>
 
-	<!-- bean的后置处理器要放入IOC容器才能生效 -->
+	<!-- bean 的后置处理器要放入 IOC 容器才能生效 -->
 	<bean id="myBeanPost" class="com.lxcecho.xml.ioc.bean.MyBeanPost"/>
 </beans>

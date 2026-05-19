@@ -16,13 +16,13 @@
 	<!--
 		1 创建三个对象
 		2 注入普通类型属性
-		3 使用util:类型 定义
-		4 在学生bean引入util:类型定义bean，完成list、map类型属性注入
+		3 使用 util:类型 定义
+		4 在学生 bean 引入 util:类型定义 bean，完成 list、map 类型属性注入
 	-->
 	<bean id="student" class="com.lxcecho.xml.ioc.bean.Student">
 		<property name="sid" value="10000"/>
 		<property name="sname" value="lucy"/>
-		<!--注入list、map类型属性-->
+		<!--注入 list、map 类型属性-->
 		<property name="lessonList" ref="lessonList"/>
 		<property name="teacherMap" ref="teacherMap"/>
 	</bean>

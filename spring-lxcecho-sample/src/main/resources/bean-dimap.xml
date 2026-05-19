@@ -6,7 +6,7 @@
 	<!--
 		1 创建两个对象
 		2 注入普通类型属性
-		3 在学生bean注入map集合类型属性
+		3 在学生 bean 注入 map 集合类型属性
 	-->
 	<bean id="teacherone" class="com.lxcecho.xml.ioc.bean.Teacher">
 		<!--注入普通类型属性-->
@@ -23,7 +23,7 @@
 		<!--注入普通类型属性-->
 		<property name="sid" value="2000"/>
 		<property name="sname" value="张三"/>
-		<!--在学生bean注入map集合类型属性-->
+		<!--在学生 bean 注入 map 集合类型属性-->
 		<property name="teacherMap">
 			<map>
 				<entry key="10010" value-ref="teacherone"/>

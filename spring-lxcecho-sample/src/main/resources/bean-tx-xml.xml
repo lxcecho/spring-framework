@@ -44,12 +44,12 @@
 			<tx:method name="find*" read-only="true"/>
 			<tx:method name="buy*" read-only="false" propagation="REQUIRED"/>
 
-			<!-- read-only属性：设置只读属性 -->
-			<!-- rollback-for属性：设置回滚的异常 -->
-			<!-- no-rollback-for属性：设置不回滚的异常 -->
-			<!-- isolation属性：设置事务的隔离级别 -->
-			<!-- timeout属性：设置事务的超时属性 -->
-			<!-- propagation属性：设置事务的传播行为 -->
+			<!-- read-only 属性：设置只读属性 -->
+			<!-- rollback-for 属性：设置回滚的异常 -->
+			<!-- no-rollback-for 属性：设置不回滚的异常 -->
+			<!-- isolation 属性：设置事务的隔离级别 -->
+			<!-- timeout 属性：设置事务的超时属性 -->
+			<!-- propagation 属性：设置事务的传播行为 -->
 			<tx:method name="save*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
 			<tx:method name="update*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
 			<tx:method name="delete*" read-only="false" rollback-for="java.lang.Exception" propagation="REQUIRES_NEW"/>
@@ -58,7 +58,7 @@
 
 	<!--6. 配置切入点和通知使用的方法，把事务通知添加到方法上-->
 	<aop:config>
-		<aop:pointcut id="pt" expression="execution(* com.lxcecho.jdbctx.xmltx.service.*.*(..))"/>
+		<aop:pointcut id="pt" expression="execution(* com.lxcecho.xml.tx.service.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>
 	</aop:config>
 </beans>

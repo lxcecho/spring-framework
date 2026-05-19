@@ -40,7 +40,7 @@ public class JdbcTemplateTest {
 		// 写法二
 		/*String sql = "select * from t_emp where id=?";
 		Emp emp = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Emp.class), 1);
-		System.out.println(emp);*/
+		System.err.println(emp);*/
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class JdbcTemplateTest {
 	public void testSelectList() {
 		String sql = "select * from t_emp";
 		List<Emp> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Emp.class));
-		System.out.println(list);
+		System.err.println(list);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class JdbcTemplateTest {
 	public void testSelectValue() {
 		String sql = "select count(*) from t_emp";
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
-		System.out.println(count);
+		System.err.println(count);
 	}
 
 	/**

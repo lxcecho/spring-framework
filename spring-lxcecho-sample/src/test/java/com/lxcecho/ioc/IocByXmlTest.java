@@ -31,14 +31,14 @@ public class IocByXmlTest {
 	public void testBookSetter() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("bean-di.xml");
 		Book book = context.getBean("book", Book.class);
-		System.out.println(book);
+		System.err.println(book);
 	}
 
 	@Test
 	public void testBookConstructor() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("bean-di.xml");
 		Book book = context.getBean("bookCon", Book.class);
-		System.out.println(book);
+		System.err.println(book);
 	}
 
 	@Test
@@ -74,14 +74,14 @@ public class IocByXmlTest {
 	@Test
 	public void testJdbc() {
 		/*DruidDataSource dataSource = new DruidDataSource();
-		dataSource.setUrl("jdbc:mysql://localhost:3306/spring?serverTimezone=UTC");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/spring-demo?serverTimezone=UTC");
 		dataSource.setUsername("root");
-		dataSource.setPassword("Amecho00#");
+		dataSource.setPassword("lxcecho00@");
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");*/
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("bean-jdbc.xml");
 		DruidDataSource dataSource = context.getBean(DruidDataSource.class);
-		System.out.println(dataSource.getUrl());
+		System.err.println(dataSource.getUrl());
 	}
 
 	// 创建 Logger 对象
@@ -104,11 +104,15 @@ public class IocByXmlTest {
 		logger.info("### 执行调用成功了..");
 	}
 
-	//反射创建对象
+	/**
+	 * 反射创建对象
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void testUserObject1() throws Exception {
 		// 获取类 Class 对象
-		Class<?> clazz = Class.forName("com.lxcecho.ioc.iocxml.bean.User");
+		Class<?> clazz = Class.forName("com.lxcecho.xml.ioc.bean.User");
 		// 调用方法创建对象
 		//Object o = clazz.newInstance();
 		User user = (User) clazz.getDeclaredConstructor().newInstance();
@@ -124,6 +128,7 @@ public class IocByXmlTest {
 
 	@Test
 	public void testBeanLife() {
+		/*TODO：DEBUG确认？？无参构造-设置属性-BeanPostProcessor#before-bean对象init-BeanPostProcessor#after-bean对象创建完成*/
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean-life.xml");
 		User user = context.getBean("user", User.class);
 		System.out.println("6 bean对象创建完成了，可以使用了");
@@ -141,26 +146,27 @@ public class IocByXmlTest {
 	@Test
 	public void testBeanScope() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("bean-scope.xml");
+		// prototype 原型：获取到的两个对象都是不一样的；singleton：两个都是一样的对象
 		Orders orders = context.getBean("orders", Orders.class);
-		System.out.println(orders);
+		System.err.println(orders);
 		Orders orders1 = context.getBean("orders", Orders.class);
-		System.out.println(orders1);
+		System.err.println(orders1);
 	}
 
 	@Test
 	public void testUser() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
-		//1 根据id获取bean
+		// 1 根据 id 获取 bean
 		User user1 = (User) context.getBean("user1");
 		System.out.println("1 根据 id 获取 bean: " + user1);
 
-		//2 根据类型获取bean
+		// 2 根据类型获取 bean
 //        User user2 = context.getBean(User.class);
-//        System.out.println("2 根据类型获取bean: "+user2);
+//        System.out.println("2 根据类型获取 bean: "+user2);
 
-		//3 根据id和类型获取bean
+		// 3 根据 id 和类型获取 bean
 //        User user3 = context.getBean("user", User.class);
-//        System.out.println("3 根据id和类型获取bean: "+user3);
+//        System.out.println("3 根据 id 和类型获取 bean: "+user3);
 	}
 
 }

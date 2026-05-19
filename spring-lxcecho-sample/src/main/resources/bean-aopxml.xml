@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:aop="http://www.springframework.org/schema/aop"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
@@ -15,7 +15,7 @@
 
 	<bean id="logAspect" class="com.lxcecho.xml.aop.LogAspect"/>
 
-	<!--配置aop五种通知类型-->
+	<!--配置 aop 五种通知类型-->
 	<aop:config>
 		<!--配置切面类-->
 		<aop:aspect ref="logAspect">
@@ -30,7 +30,7 @@
 
 			<!--返回通知-->
 			<aop:after-returning method="afterReturningMethod" returning="result"
-								 pointcut-ref="pointcut"/>
+			                     pointcut-ref="pointcut"/>
 
 			<!--异常通知-->
 			<aop:after-throwing method="afterThrowingMethod" throwing="ex" pointcut-ref="pointcut"/>

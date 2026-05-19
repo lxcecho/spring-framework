@@ -22,7 +22,7 @@ public class JdbcTest {
 			// 加载驱动类
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// 数据库连接
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spring", "root", "lxcecho00@");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spring-demo", "root", "lxcecho00@");
 			// 关闭事务自动提交
 			connection.setAutoCommit(false);
 			// 定义 sql
