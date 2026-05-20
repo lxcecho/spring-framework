@@ -1,6 +1,8 @@
 package com.lxcecho.anno.ioc.processor.factory;
 
 import com.lxcecho.entity.Blue;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
@@ -17,13 +19,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
+	/** Logger available to subclasses. */
+	protected final Log logger = LogFactory.getLog(getClass());
+
 	public MyBeanDefinitionRegistryPostProcessor() {
 		System.out.println("MyBeanDefinitionRegistryPostProcessor....Constructor");
 	}
 
 	@Override  // 紧接着执行
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		System.out.println("MyBeanDefinitionRegistryPostProcessor....postProcessBeanFactory...");
+		logger.error("lxcecho: MyBeanDefinitionRegistryPostProcessor....postProcessBeanFactory...");
 		// TODO Auto-generated method stub
 		System.out.println("MyBeanDefinitionRegistryPostProcessor...bean的数量：" + beanFactory.getBeanDefinitionCount());
 	}
@@ -37,7 +42,7 @@ public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegi
 
 	@Override  // 先执行的
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-		System.out.println("MyBeanDefinitionRegistryPostProcessor...postProcessBeanDefinitionRegistry...");
+		logger.error("lxcecho: MyBeanDefinitionRegistryPostProcessor...postProcessBeanDefinitionRegistry...");
 		// 增强 bean 定义信息的注册中心，比如自己注册组件
 		// TODO Auto-generated method stub
 		System.out.println("postProcessBeanDefinitionRegistry...bean 的数量：" + registry.getBeanDefinitionCount());

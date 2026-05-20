@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
  * @author lxcecho lxcecho@gmail.com
  * @since 2023/12/10
  */
-@Repository
+@Repository(value = "userDao")
 public class UserDaoImpl  implements UserDao {
 
     @Override

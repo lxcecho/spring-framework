@@ -721,6 +721,7 @@ public abstract class ReflectionUtils {
 	 */
 	private static Field[] getDeclaredFields(Class<?> clazz) {
 		Assert.notNull(clazz, "Class must not be null");
+		// 1. 反射获取当前类【所有字段】private/protected/public 全部拿到
 		Field[] result = declaredFieldsCache.get(clazz);
 		if (result == null) {
 			try {

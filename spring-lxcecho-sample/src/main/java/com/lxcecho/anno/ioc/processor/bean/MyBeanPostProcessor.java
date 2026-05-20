@@ -1,9 +1,10 @@
 package com.lxcecho.anno.ioc.processor.bean;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
-
 
 /**
  * Bean 组件的 PostProcessor，后置处理器：初始化前后进行处理goon工作，将后置处理器加入到容器中
@@ -13,13 +14,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MyBeanPostProcessor implements BeanPostProcessor {
+	/** Logger available to subclasses. */
+	protected final Log logger = LogFactory.getLog(getClass());
+
 	public MyBeanPostProcessor() {
 		System.out.println("MyBeanPostProcessor.......Constructor");
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		System.out.println("MyBeanPostProcessor...postProcessAfterInitialization..." + bean + "==>" + beanName);
+		logger.error("lxcecho: MyBeanPostProcessor...postProcessAfterInitialization..." + bean + "==>" + beanName);
 		return bean;
 	}
 
@@ -33,7 +37,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
 	 */
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		System.out.println("MyBeanPostProcessor...postProcessBeforeInitialization..." + bean + "==>" + beanName);
+		logger.error("lxcecho: MyBeanPostProcessor...postProcessBeforeInitialization..." + bean + "==>" + beanName);
 		return bean;
 	}
 

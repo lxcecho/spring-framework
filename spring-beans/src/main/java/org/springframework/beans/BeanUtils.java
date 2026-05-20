@@ -195,7 +195,7 @@ public abstract class BeanUtils {
 			else {
 				int parameterCount = ctor.getParameterCount();
 				Assert.isTrue(args.length <= parameterCount, "Can't specify more arguments than constructor parameters");
-				if (parameterCount == 0) {
+				if (parameterCount == 0) { // 无参构造函数
 					return ctor.newInstance();
 				}
 				Class<?>[] parameterTypes = ctor.getParameterTypes();
@@ -209,7 +209,7 @@ public abstract class BeanUtils {
 						argsWithDefaultValues[i] = args[i];
 					}
 				}
-				return ctor.newInstance(argsWithDefaultValues);
+				return ctor.newInstance(argsWithDefaultValues); // 有参构造函数
 			}
 		}
 		catch (InstantiationException ex) {

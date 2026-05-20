@@ -1,5 +1,7 @@
 package com.lxcecho.anno.ioc.processor.bean;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,9 @@ import java.lang.reflect.Constructor;
  */
 @Component
 public class MySmartInstantiationAwareBeanPostProcessor implements SmartInstantiationAwareBeanPostProcessor {
+
+	/** Logger available to subclasses. */
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	public MySmartInstantiationAwareBeanPostProcessor() {
 		System.out.println("MySmartInstantiationAwareBeanPostProcessor.......Constructor");
@@ -30,7 +35,7 @@ public class MySmartInstantiationAwareBeanPostProcessor implements SmartInstanti
 	 */
 	@Override
 	public Class<?> predictBeanType(Class<?> beanClass, String beanName) throws BeansException {
-		System.out.println("MySmartInstantiationAwareBeanPostProcessor...predictBeanType=>" + beanClass + "--" + beanName);
+		logger.error("lxcecho: MySmartInstantiationAwareBeanPostProcessor...predictBeanType=>" + beanClass + "--" + beanName);
 		return null;
 	}
 
@@ -45,7 +50,7 @@ public class MySmartInstantiationAwareBeanPostProcessor implements SmartInstanti
 	@Override
 	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, String beanName)
 			throws BeansException {
-		System.out.println("MySmartInstantiationAwareBeanPostProcessor...determineCandidateConstructors=>" + beanClass + "--" + beanName);
+		logger.error("lxcecho: MySmartInstantiationAwareBeanPostProcessor...determineCandidateConstructors=>" + beanClass + "--" + beanName);
 		// 返回一个我们指定的构造器
 		return null;
 	}
@@ -60,7 +65,7 @@ public class MySmartInstantiationAwareBeanPostProcessor implements SmartInstanti
 	 */
 	@Override
 	public Object getEarlyBeanReference(Object bean, String beanName) throws BeansException {
-		System.out.println("MySmartInstantiationAwareBeanPostProcessor...getEarlyBeanReference=>" + bean + "--" + beanName);
+		logger.error("lxcecho: MySmartInstantiationAwareBeanPostProcessor...getEarlyBeanReference=>" + bean + "--" + beanName);
 		return bean;
 	}
 

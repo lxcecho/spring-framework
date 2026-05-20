@@ -175,7 +175,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		ignoreDependencyInterface(BeanNameAware.class);
 		ignoreDependencyInterface(BeanFactoryAware.class);
 		ignoreDependencyInterface(BeanClassLoaderAware.class);
-		this.instantiationStrategy = new CglibSubclassingInstantiationStrategy();
+		this.instantiationStrategy = new CglibSubclassingInstantiationStrategy(); // 对象实例化，采用 Cglib 动态代理
 	}
 
 	/**
@@ -1501,10 +1501,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				pvs = mbd.getPropertyValues();
 			}
 			// 使用后置处理器处理属性
-			for (InstantiationAwareBeanPostProcessor bp : getBeanPostProcessorCache().instantiationAware) {
+			List<InstantiationAwareBeanPostProcessor> processors = getBeanPostProcessorCache().instantiationAware;
+			if ("resourceUserController".equals(beanName)) {
+				System.err.println("EMAN=====" + processors.size());
+			}
+			for (InstantiationAwareBeanPostProcessor bp : processors) {
+				if ("resourceUserController".equals(beanName)){
+					System.err.println("EMAN====="+bp + "\t" + processors.size());
+				}
 				// 在这里会对 @Autowired 标记的属性进行依赖注入
 				PropertyValues pvsToUse = bp.postProcessProperties(pvs, bw.getWrappedInstance(), beanName);
-				if (pvsToUse == null) {
+				if (pvsToUse == null) { // 如果返回空，后续所有后置增强都无法执行，可能会导致属性注入失败，如：AutowiredAnnotationBeanPostProcessor.postProcessProperties 可能无法执行
 					return;
 				}
 				// 封装了当前 Bean 的素有属性名和值，可以由后置处理器处理得到

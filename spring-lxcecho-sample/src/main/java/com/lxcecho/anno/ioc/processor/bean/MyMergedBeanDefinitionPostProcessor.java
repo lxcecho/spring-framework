@@ -1,5 +1,7 @@
 package com.lxcecho.anno.ioc.processor.bean;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor;
 import org.springframework.beans.factory.support.RootBeanDefinition;
@@ -11,19 +13,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MyMergedBeanDefinitionPostProcessor implements MergedBeanDefinitionPostProcessor {
+	/** Logger available to subclasses. */
+	protected final Log logger = LogFactory.getLog(getClass());
+
 	public MyMergedBeanDefinitionPostProcessor() {
 		System.out.println("MyMergedBeanDefinitionPostProcessor.......Constructor");
 	}
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		System.out.println("MyMergedBeanDefinitionPostProcessor...postProcessBeforeInitialization...=>" + bean + "--" + beanName);
+		logger.error("lxcecho: MyMergedBeanDefinitionPostProcessor...postProcessBeforeInitialization...=>" + bean + "--" + beanName);
 		return bean;// null
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		System.out.println("MyMergedBeanDefinitionPostProcessor...postProcessAfterInitialization..=>" + bean + "--" + beanName);
+		logger.error("lxcecho: MyMergedBeanDefinitionPostProcessor...postProcessAfterInitialization..=>" + bean + "--" + beanName);
 		return null;
 	}
 
@@ -36,11 +41,11 @@ public class MyMergedBeanDefinitionPostProcessor implements MergedBeanDefinition
 	 */
 	@Override
 	public void postProcessMergedBeanDefinition(RootBeanDefinition beanDefinition, Class<?> beanType, String beanName) {
-		System.out.println("MyMergedBeanDefinitionPostProcessor...postProcessMergedBeanDefinition..=>" + beanName + "--" + beanType + "---" + beanDefinition);
+		logger.error("lxcecho: MyMergedBeanDefinitionPostProcessor...postProcessMergedBeanDefinition..=>" + beanName + "--" + beanType + "---" + beanDefinition);
 	}
 
 	@Override
 	public void resetBeanDefinition(String beanName) {
-		System.out.println("MyMergedBeanDefinitionPostProcessor...resetBeanDefinition.." + beanName);
+		logger.error("lxcecho: MyMergedBeanDefinitionPostProcessor...resetBeanDefinition.." + beanName);
 	}
 }

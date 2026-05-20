@@ -10,6 +10,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan("com.lxcecho.aop.annoaop")
+@ComponentScan("com.lxcecho.anno.aop")
 public class SpringAopConfig {
 }

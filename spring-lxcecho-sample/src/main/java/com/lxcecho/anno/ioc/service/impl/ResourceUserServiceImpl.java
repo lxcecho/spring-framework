@@ -2,7 +2,7 @@ package com.lxcecho.anno.ioc.service.impl;
 
 import com.lxcecho.anno.ioc.dao.UserDao;
 import com.lxcecho.anno.ioc.service.UserService;
-import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,12 +15,12 @@ public class ResourceUserServiceImpl implements UserService {
 	/**
 	 * 不 指定名称，根据属性名称进行注入
 	 */
-	@Resource
-	private UserDao myUserDao;
+	@Autowired
+	private UserDao userDao;
 
 	@Override
 	public void add() {
 		System.out.println("ResourceUserServiceImpl.....");
-		myUserDao.add();
+		userDao.add();
 	}
 }

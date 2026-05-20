@@ -65,7 +65,7 @@ final class PostProcessorRegistrationDelegate {
 
 
 	/**
-	 * 执行工厂的后置处理器
+	 * 执行Bean工厂的后置处理器
 	 *
 	 * @param beanFactory
 	 * @param beanFactoryPostProcessors

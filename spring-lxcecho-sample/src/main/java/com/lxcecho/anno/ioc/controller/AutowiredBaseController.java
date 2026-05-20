@@ -2,6 +2,7 @@ package com.lxcecho.anno.ioc.controller;
 
 import com.lxcecho.anno.ioc.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -33,7 +34,7 @@ public class AutowiredBaseController {
 
 	// 第四种方式 形参上注入
 	/*private BaseService baseService;
-	public AutowiredUserController(@Autowired BaseService baseService) {
+	public AutowiredBaseController(@Autowired BaseService baseService) {
 		this.baseService = baseService;
 	}*/
 
@@ -45,6 +46,6 @@ public class AutowiredBaseController {
 
 	public void add() {
 		System.out.println("AutowiredBaseController........");
-		baseService.add();
+		this.baseService.add();
 	}
 }

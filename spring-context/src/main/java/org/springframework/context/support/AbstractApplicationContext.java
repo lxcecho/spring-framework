@@ -655,7 +655,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				/**
 				 * 11、初始化所有剩余的单例 Bean
 				 * 【大核心】bean 创建，完成 BeanFactory 初始化。（工厂里面所有的组件都好了）
-				 * 【对注册后的 Bean 定义中的预实例化(lazy-init=false;Spring 默认就是预实例化，即为 false) 的 Bean 进行处理的地方】
+				 * 【对注册后的 Bean 定义中的预实例化(lazy-init=false; Spring 默认就是预实例化，即为 false) 的 Bean 进行处理的地方】
 				 */
 				// Instantiate all remaining (non-lazy-init) singletons.
 				finishBeanFactoryInitialization(beanFactory);
@@ -1032,7 +1032,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		// Stop using the temporary ClassLoader for type matching.
 		beanFactory.setTempClassLoader(null);
 
-		// 缓存容器中所有注册的 BeanDefinition 元素据，以防被修改
+		// 缓存容器中所有注册的 BeanDefinition 元数据，以防被修改
 		// Allow for caching all bean definition metadata, not expecting further changes.
 		beanFactory.freezeConfiguration();
 

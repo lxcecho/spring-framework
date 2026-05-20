@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  * @since 2023/12/11
  */
 @Configuration  // 配置类
-@ComponentScan("com.lxcecho.jdbctx.annotx")
+@ComponentScan("com.lxcecho.anno.tx")
 @EnableTransactionManagement // 开启事务管理
 public class TxConfig {
 
