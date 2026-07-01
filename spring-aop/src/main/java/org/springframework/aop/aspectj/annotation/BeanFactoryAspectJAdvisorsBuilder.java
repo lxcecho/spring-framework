@@ -127,7 +127,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 								if (amd.getAjType().getPerClause().getKind() == PerClauseKind.SINGLETON) {
 									MetadataAwareAspectInstanceFactory factory =
 											new BeanFactoryAspectInstanceFactory(this.beanFactory, beanName);
-									// 获取增强器：Aspect 里面的 advice 和 pointcut 被拆分程一个个 advisor，advisor 里的 advice 和 pointcut 是 1对1 的关系
+									// 获取增强器：Aspect 里面的 advice 和 pointcut 被拆分成一个个 advisor，advisor 里的 advice 和 pointcut 是 1对1 的关系
 									List<Advisor> classAdvisors = this.advisorFactory.getAdvisors(factory);
 									if (this.beanFactory.isSingleton(beanName)) {
 										// 单例则直接将 Advisor 类存到缓存
@@ -150,7 +150,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 									this.aspectFactoryCache.put(beanName, factory);
 									advisors.addAll(this.advisorFactory.getAdvisors(factory));
 								}
-								aspectNames.add(beanName);
+								aspectNames.add(beanName); // TODO：是 @Aspect 切面类才会添加，期间会解析切入点和方法
 							}
 							catch (IllegalArgumentException | IllegalStateException | AopConfigException ex) {
 								if (logger.isDebugEnabled()) {

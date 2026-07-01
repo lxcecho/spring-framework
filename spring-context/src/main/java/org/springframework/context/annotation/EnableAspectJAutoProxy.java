@@ -132,7 +132,8 @@ public @interface EnableAspectJAutoProxy {
 
 	/**
 	 * 解决内部调用不能使用代理的场景，默认为 false，表示不处理
-	 * true 则表示这个代理对象的副本就可以通过 AopContext.currentProxy() 获得（ThreadLocal 里面），从而我们可以很方便的在 Spring 框架上下文中拿到当前代理对象（处理事务时很方便）
+	 * true 则表示这个代理对象的副本就可以通过 AopContext.currentProxy() 获得（ThreadLocal 里面），
+	 * 从而我们可以很方便的在 Spring 框架上下文中拿到当前代理对象（处理事务时很方便）
 	 *
 	 * Indicate that the proxy should be exposed by the AOP framework as a {@code ThreadLocal}
 	 * for retrieval via the {@link org.springframework.aop.framework.AopContext} class.

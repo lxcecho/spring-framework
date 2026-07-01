@@ -476,7 +476,7 @@ public abstract class ReflectionUtils {
 				else {
 					result = declaredMethods;
 				}
-				declaredMethodsCache.put(clazz, (result.length == 0 ? EMPTY_METHOD_ARRAY : result));
+				declaredMethodsCache.put(clazz, (result.length == 0 ? EMPTY_METHOD_ARRAY : result)); // 缓存切面类所有方法
 			}
 			catch (Throwable ex) {
 				throw new IllegalStateException("Failed to introspect Class [" + clazz.getName() +
